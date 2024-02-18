@@ -19,7 +19,7 @@ const Board = ({columns, rowDatas, isVisibleHeader=true}) => {
 
     return <div id="Board">
         <table>
-            <thead className={`board__header ${isVisibleHeader?'':'hidden'} bg-cyan-200 text-gray-900`}>
+            <thead className={`board__header ${isVisibleHeader?'':'hidden'} text-gray-900 border-double`}>
                 {columns.map(cInfo=>
                     <th style={styleHandle(cInfo)}>
                         {cInfo.title}

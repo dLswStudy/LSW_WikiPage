@@ -2,39 +2,103 @@
 
 }
 #Board table{
-  display: flex;
-  flex-direction: column;
+            display: flex;
+            flex-direction: column;
 }
 #Board table thead, #Board table tr{
-  display: flex;
+            display: flex;
 }
 #Board table thead{
-  font-weight: 700;
+            font-weight: 700;
+            border-bottom: black solid 2px;
 }
+#Board table thead th{
+                position: relative;
+                display: grid;
+            }
+#Board table thead th::before{
+                content: "";
+                width: 1px;
+                height: 12px;
+                background-color: #1f2530;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+#Board table thead th:first-child::before{
+                display: none;
+            }
 #Board table tbody{
-  flex-direction: column;
+            flex-direction: column;
+}
+#Board table tbody tr:hover{
+            --tw-bg-opacity: 1;
+            background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+                cursor: pointer;
 }
 #Board th, #Board td{
-  flex-grow: 1;
-  padding: 0.75rem;
+            flex-grow: 1;
+            padding: 0.75rem;
 }
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 /*INNER*/
-.inner{
-  width: 1100px;
-  margin: 0 auto;
+.inner {
+    width: 1100px;
+    margin: 0 auto;
 }
+/*BUTTON*/
+.btn {
+    width: 130px;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    transition: .4s;
+}
+.btn.btn--black-reverse{
+            --tw-border-opacity: 1;
+            border-left-color: rgb(41 37 36 / var(--tw-border-opacity));
+            --tw-bg-opacity: 1;
+            background-color: rgb(41 37 36 / var(--tw-bg-opacity));
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.btn.btn--black-reverse:hover{
+            --tw-border-opacity: 1;
+            border-color: rgb(0 0 0 / var(--tw-border-opacity));
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+            --tw-text-opacity: 1;
+            color: rgb(41 37 36 / var(--tw-text-opacity));
+}
+.BoardSection__popup{
+        position: fixed;
+        box-shadow: 5px 5px 5px 5px gray;
+        top:20%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        min-height: 500px;
+        width: 900px;
+    }
 /*! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com*/
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -356,134 +420,137 @@ video {
   display: none;
 }
 *, ::before, ::after{
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x:  ;
+            --tw-pan-y:  ;
+            --tw-pinch-zoom:  ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position:  ;
+            --tw-gradient-via-position:  ;
+            --tw-gradient-to-position:  ;
+            --tw-ordinal:  ;
+            --tw-slashed-zero:  ;
+            --tw-numeric-figure:  ;
+            --tw-numeric-spacing:  ;
+            --tw-numeric-fraction:  ;
+            --tw-ring-inset:  ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur:  ;
+            --tw-brightness:  ;
+            --tw-contrast:  ;
+            --tw-grayscale:  ;
+            --tw-hue-rotate:  ;
+            --tw-invert:  ;
+            --tw-saturate:  ;
+            --tw-sepia:  ;
+            --tw-drop-shadow:  ;
+            --tw-backdrop-blur:  ;
+            --tw-backdrop-brightness:  ;
+            --tw-backdrop-contrast:  ;
+            --tw-backdrop-grayscale:  ;
+            --tw-backdrop-hue-rotate:  ;
+            --tw-backdrop-invert:  ;
+            --tw-backdrop-opacity:  ;
+            --tw-backdrop-saturate:  ;
+            --tw-backdrop-sepia:  ;
 }
 ::backdrop{
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgb(59 130 246 / 0.5);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x:  ;
+            --tw-pan-y:  ;
+            --tw-pinch-zoom:  ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position:  ;
+            --tw-gradient-via-position:  ;
+            --tw-gradient-to-position:  ;
+            --tw-ordinal:  ;
+            --tw-slashed-zero:  ;
+            --tw-numeric-figure:  ;
+            --tw-numeric-spacing:  ;
+            --tw-numeric-fraction:  ;
+            --tw-ring-inset:  ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur:  ;
+            --tw-brightness:  ;
+            --tw-contrast:  ;
+            --tw-grayscale:  ;
+            --tw-hue-rotate:  ;
+            --tw-invert:  ;
+            --tw-saturate:  ;
+            --tw-sepia:  ;
+            --tw-drop-shadow:  ;
+            --tw-backdrop-blur:  ;
+            --tw-backdrop-brightness:  ;
+            --tw-backdrop-contrast:  ;
+            --tw-backdrop-grayscale:  ;
+            --tw-backdrop-hue-rotate:  ;
+            --tw-backdrop-invert:  ;
+            --tw-backdrop-opacity:  ;
+            --tw-backdrop-saturate:  ;
+            --tw-backdrop-sepia:  ;
 }
-.mt-14{
-  margin-top: 3.5rem;
+.my-14{
+            margin-top: 3.5rem;
+            margin-bottom: 3.5rem;
+}
+.mb-5{
+            margin-bottom: 1.25rem;
+}
+.flex{
+            display: flex;
 }
 .table{
-  display: table;
+            display: table;
 }
 .hidden{
-  display: none;
-}
-.h-12{
-  height: 3rem;
+            display: none;
 }
 .h-24{
-  height: 6rem;
+            height: 6rem;
+}
+.justify-end{
+            justify-content: flex-end;
+}
+.border-double{
+            border-style: double;
 }
 .bg-cyan-200{
-  --tw-bg-opacity: 1;
-  background-color: rgb(165 243 252 / var(--tw-bg-opacity));
-}
-.bg-indigo-300{
-  --tw-bg-opacity: 1;
-  background-color: rgb(165 180 252 / var(--tw-bg-opacity));
+            --tw-bg-opacity: 1;
+            background-color: rgb(165 243 252 / var(--tw-bg-opacity));
 }
 .bg-slate-200{
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
-}
-.text-right{
-  text-align: right;
+            --tw-bg-opacity: 1;
+            background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 .text-gray-900{
-  --tw-text-opacity: 1;
-  color: rgb(17 24 39 / var(--tw-text-opacity));
+            --tw-text-opacity: 1;
+            color: rgb(17 24 39 / var(--tw-text-opacity));
 }

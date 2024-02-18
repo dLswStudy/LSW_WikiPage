@@ -10,11 +10,40 @@
         }
 
         thead{
-            @apply font-bold
+            @apply
+            font-bold
+            ;
+            border-bottom: black solid 2px;
+
+            th{
+                position: relative;
+                display: grid;
+            }
+
+            th::before{
+                content: "";
+                width: 1px;
+                height: 12px;
+                background-color: #1f2530;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+            th:first-child::before{
+                display: none;
+            }
         }
 
         tbody{
             @apply flex-col;
+
+            tr:hover{
+                @apply
+                    bg-gray-50
+                ;
+                cursor: pointer;
+            }
         }
     }
 
