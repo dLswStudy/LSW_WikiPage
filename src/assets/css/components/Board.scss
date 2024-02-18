@@ -4,7 +4,7 @@
         flex
         flex-col;
 
-        thead, tr{
+        tr{
             @apply
             flex
         }
@@ -14,6 +14,10 @@
             font-bold
             ;
             border-bottom: black solid 2px;
+
+            tr{
+                @apply flex-grow;
+            }
 
             th{
                 position: relative;

@@ -19,17 +19,19 @@ const Board = ({columns, rowDatas, isVisibleHeader=true}) => {
 
     return <div id="Board">
         <table>
-            <thead className={`board__header ${isVisibleHeader?'':'hidden'} text-gray-900 border-double`}>
-                {columns.map(cInfo=>
-                    <th style={styleHandle(cInfo)}>
-                        {cInfo.title}
-                    </th>)}
+            <thead className={`board__header ${isVisibleHeader?'flex':'hidden'} text-gray-900 border-double`}>
+                <tr>
+                    {columns.map(cInfo=>
+                        <th style={styleHandle(cInfo)} key={cInfo.dataIndex}>
+                            {cInfo.title}
+                        </th>)}
+                </tr>
             </thead>
             <tbody className="board__body">
-                {rowDatas.map(rData=>
-                    <tr>
+                {rowDatas.map((rData, rowNum)=>
+                    <tr key={rowNum}>
                         {columns.map(cInfo2=>
-                            <td style={styleHandle(cInfo2)}>
+                            <td style={styleHandle(cInfo2)} key={rowNum+'-'+cInfo2.dataIndex}>
                                 {dataHandle(cInfo2, rData[cInfo2.dataIndex])}
                             </td>)}
                     </tr>)}
