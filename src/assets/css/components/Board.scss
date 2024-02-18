@@ -1,0 +1,26 @@
+#Board {
+    table {
+        @apply
+        flex
+        flex-col;
+
+        thead, tr{
+            @apply
+            flex
+        }
+
+        thead{
+            @apply font-bold
+        }
+
+        tbody{
+            @apply flex-col;
+        }
+    }
+
+    th, td {
+        @apply
+        p-3
+        flex-grow
+    }
+}
