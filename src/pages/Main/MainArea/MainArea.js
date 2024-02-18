@@ -1,5 +1,15 @@
 import Board from "../../../components/Board/Board";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import appConfig from "../../../config/app.config";
+import axios from "axios";
+import SpinByW from "../../../components/SpinByW/SpinByW";
+
+const api_getPosts = async () => {
+    return await axios.get(appConfig.apiPreUrl + '/Post')
+};
+const api_putPost = async (data) => {
+    return await axios.post(appConfig.apiPreUrl + '/Post', data)
+};
 
 const MainArea = () => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -9,23 +19,56 @@ const MainArea = () => {
         content: "",
     }
     const [state, setState] = useState(initialState);
+    const [rowDatas, setRowDatas] = useState([]);
+    const [loadingR, setLoadingR] = useState(false);
+    const [loadingW, setLoadingW] = useState(false);
+
+    const okMsg = '게시글 등록 성공';
+    const errMsg = '게시물을 가져오는 데 실패했습니다.';
 
     const titleInput = useRef();
     const contentInput = useRef();
 
-    const apiCreate = () => {
-        console.log('api')
+    const fetchData = async (req) => {
+        try {
+            setLoadingR(true)
+            const res = await api_getPosts(req);
+            setLoadingR(false)
+            console.log('getPost res', res)
+            setRowDatas(res.data)
+        } catch (error) {
+            setLoadingR(false)
+            alert(errMsg)
+        }
     }
+    const submitData = async (req) => {
+        try {
+            setLoadingW(true)
+            const res = await api_putPost(req);
+            setLoadingW(false)
+            if (res.status === 200) {
+                alert(okMsg)
+                return true
+            }
+            console.log('api_putPost res', res)
+        } catch (error) {
+            setLoadingW(false)
+            alert(errMsg)
+            return false
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 
     const cols = [
         {title: '제목', dataIndex: 'title'},
         {title: '등록일시', dataIndex: 'instDT', type: 'dateTime', maxWidth: 170},
         {title: '수정일시', dataIndex: 'modfDT', type: 'dateTime', maxWidth: 170},
     ]
-    const [rowDatas, setRowDatas] = useState([
-        {title: '가나다라마바사', instDT: '20230217203424', modfDT: '20230217203424'},
-        {title: '애플워치', instDT: '20230218091224', modfDT: '20230218101524'},
-    ]);
+
 
     const handleChangeState = (e) => {
         console.log(e.target.name)
@@ -37,7 +80,7 @@ const MainArea = () => {
         })
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (state.title.length < 1) {
             alert("제목은 최소 1글자 이상 입력해 주세요.")
             titleInput.current.focus();
@@ -50,8 +93,7 @@ const MainArea = () => {
             return false;
         }
 
-        apiCreate(state.title, state.content)
-        alert("게시글 등록 성공")
+        if(!await submitData(state)) return false
         return true;
     }
     // 팝업 보이기
@@ -68,9 +110,11 @@ const MainArea = () => {
         setState(initialState)
     }
     // 작성 완료 버튼
-    const doCompleteBtn = () => {
-        if(handleSubmit())
+    const doCompleteBtn = async () => {
+        if(await handleSubmit()){
+            await fetchData()
             doClose()
+        }
     }
     // 팝업 외 클릭시 팝업 숨기기
     const doBehindLayer = () => {
@@ -84,6 +128,7 @@ const MainArea = () => {
                     <div className="BoardSection__btnArea mb-5 flex justify-end">
                         <div className="addBtn btn btn--black-reverse" onClick={doAddBtn}>추가</div>
                     </div>
+                    <SpinByW loading={loadingR}/>
                     <Board columns={cols} rowDatas={rowDatas} />
 
                     <div className={`BoardSection__popup ${isPopupVisible ? '' : 'hidden'}`}>
@@ -114,6 +159,7 @@ const MainArea = () => {
                                     />
                                 </div>
                                 <div className="btnArea">
+                                    <SpinByW loading={loadingW}/>
                                     <div className="addBtn btn btn--black-reverse" onClick={doCompleteBtn}>작성 완료</div>
                                 </div>
                             </div>

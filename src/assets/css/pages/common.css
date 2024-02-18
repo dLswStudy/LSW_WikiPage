@@ -48,3 +48,7 @@ code {
     border-black;
 }
 
+.SpinByW-loading + div{
+    display: none;
+}
+

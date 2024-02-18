@@ -92,6 +92,9 @@ code {
             --tw-text-opacity: 1;
             color: rgb(41 37 36 / var(--tw-text-opacity));
 }
+.SpinByW-loading + div{
+    display: none;
+}
 .BoardSection__popup {
         position: fixed;
         box-shadow: 5px 5px 5px 5px gray;
