@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'NotoSansKR-Variable';
+    src: url('src/assets/css/font/Noto_Sans_KR/NotoSansKR-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'NotoSansKR-Black';
+    src: url('src/assets/css/font/Noto_Sans_KR/static/NotoSansKR-Black.ttf') format('truetype');
+}
