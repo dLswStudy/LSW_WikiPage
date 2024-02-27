@@ -95,9 +95,27 @@ code {
 .SpinByW-loading + div{
     display: none;
 }
+.pageName {
+    font-family: Apple, sans-serif;
+    font-weight: bolder;
+    font-size: xx-large;
+    text-align: center;
+}
+.hr4{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+}
+.hr2{
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+}
+.text-noto-h1{
+    font-family: NotoSansKR-Variable, sans-serif;
+    font-weight: 500;
+}
 .BoardSection__popup {
         position: fixed;
-        box-shadow: 5px 5px 5px 5px gray;
+        box-shadow: 5px 5px 5px 5px grey;
         top: 20%;
         left: 0;
         right: 0;
@@ -138,8 +156,6 @@ code {
             line-height: 2.5rem;
 }
 .BoardSection__popup .popup__body__wrapper .title{
-                    height: -moz-fit-content;
-                    height: fit-content;
                     display: flex;
                     align-items: center;
                     margin-bottom: 15px;
@@ -148,10 +164,7 @@ code {
                     display: flex;
                 }
 .BoardSection__popup .popup__body__wrapper input, .BoardSection__popup .popup__body__wrapper textarea{
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
+            padding: 0.75rem;
 
                     height: 100%;
                     flex-grow: 1;
@@ -163,7 +176,7 @@ code {
                 }
 .BoardSection__popup .popup__body__wrapper .btnArea{
                     display: flex;
-                    justify-content: end;
+                    justify-content: flex-end;
                     margin-top: 20px;
                 }
 .BoardSection .popup_behindLayer{
@@ -176,6 +189,87 @@ code {
         height: 100vh;
         background-color: #3e4247;
     }
+#WikiArea .btnArea{
+            display: flex;
+            justify-content: space-between;
+}
+#WikiArea .btnArea-left{
+
+        }
+#WikiArea .btnArea-right{
+            display: flex;
+}
+#WikiArea .wiki-body__wrapper{
+            padding-left: 5rem;
+            padding-right: 5rem;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+}
+#WikiArea .wiki-body__wrapper .itemText{
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+}
+#WikiArea .wiki-body__wrapper .title{
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+#WikiArea .wiki-body__wrapper input, #WikiArea .wiki-body__wrapper textarea{
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+
+            height: 100%;
+            flex-grow: 1;
+            border-radius: 8px;
+            border: #1f2530 solid 1px;
+}
+#WikiArea .wiki-body__wrapper textarea{
+            min-height: 300px;
+        }
+#WikiArea .wiki-body__wrapper .btnArea{
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+#WikiArea .wiki-body__wrapper .wiki__header .title_content{
+                    font-weight: bold;
+                }
+#WikiArea .wiki-body__wrapper .wiki__content-body{
+                min-height: 500px;
+            }
+#WikiArea .wiki-body__wrapper .wiki__content-body .content{
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+}
+#WikiArea .wiki-body__wrapper .wiki__movePost{
+            display: flex;
+            vertical-align: middle;
+}
+#WikiArea .wiki-body__wrapper .wiki__movePost .text{
+                    position: relative;
+                    margin-right: 14px;
+                }
+#WikiArea .wiki-body__wrapper .wiki__movePost .text::after{
+                    content: "";
+                    width: 2px;
+                    height: 12px;
+                    background-color: #1f2530;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    right: -7px;
+                    opacity: .7;
+                }
+#WikiArea .wiki-body__wrapper .wiki__movePost:hover{
+            --tw-bg-opacity: 1;
+            background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+                cursor: pointer;
+}
 /*! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com*/
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -626,4 +720,12 @@ video {
 .text-gray-900{
             --tw-text-opacity: 1;
             color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+@font-face {
+    font-family: 'NotoSansKR-Variable';
+    src: url('src/assets/css/font/Noto_Sans_KR/NotoSansKR-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'NotoSansKR-Black';
+    src: url('src/assets/css/font/Noto_Sans_KR/static/NotoSansKR-Black.ttf') format('truetype');
 }

@@ -1,7 +1,7 @@
 .BoardSection {
     &__popup {
         position: fixed;
-        box-shadow: 5px 5px 5px 5px gray;
+        box-shadow: 5px 5px 5px 5px grey;
         top: 20%;
         left: 0;
         right: 0;
@@ -42,7 +42,6 @@
                 }
 
                 .title{
-                    height: fit-content;
                     display: flex;
                     align-items: center;
                     margin-bottom: 15px;
@@ -52,7 +51,7 @@
                 }
                 input, textarea{
                     @apply
-                    px-3 py-3;
+                    p-3;
 
                     height: 100%;
                     flex-grow: 1;
@@ -64,7 +63,7 @@
                 }
                 .btnArea{
                     display: flex;
-                    justify-content: end;
+                    justify-content: flex-end;
                     margin-top: 20px;
                 }
             }

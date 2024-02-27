@@ -52,3 +52,22 @@ code {
     display: none;
 }
 
+.pageName {
+    font-family: Apple, sans-serif;
+    font-weight: bolder;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.hr4{
+    @apply my-4;
+}
+.hr2{
+    @apply my-1;
+}
+
+.text-noto-h1{
+    font-family: NotoSansKR-Variable, sans-serif;
+    font-weight: 500;
+}
+

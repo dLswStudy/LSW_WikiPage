@@ -3,7 +3,7 @@ import Wiki from "./pages/Wiki/Wiki";
 
 const routes = [
   { path: "/", component: Main },
-  { path: "/wiki", component: Wiki },
+  { path: "/wiki", component: Wiki }
 
 ];
 

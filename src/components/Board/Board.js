@@ -1,7 +1,8 @@
 import moment from "moment";
+import {useNavigate} from "react-router-dom";
 
 const Board = ({columns, rowDatas, isVisibleHeader=true}) => {
-
+    const navigate = useNavigate();
     const styleHandle = colInfo => {
         const styleData = {}
         if(colInfo.maxWidth){
@@ -17,6 +18,10 @@ const Board = ({columns, rowDatas, isVisibleHeader=true}) => {
         }
     }
 
+    const toDetail = (index) => {
+        navigate('/wiki',{state:{index:index}})
+    }
+
     return <div id="Board">
         <table>
             <thead className={`board__header ${isVisibleHeader?'flex':'hidden'} text-gray-900 border-double`}>
@@ -29,12 +34,13 @@ const Board = ({columns, rowDatas, isVisibleHeader=true}) => {
             </thead>
             <tbody className="board__body">
                 {rowDatas.map((rData, rowNum)=>
-                    <tr key={rowNum}>
+                    <tr key={rowNum} onClick={() => toDetail(rData.index)}>
                         {columns.map(cInfo2=>
                             <td style={styleHandle(cInfo2)} key={rowNum+'-'+cInfo2.dataIndex}>
                                 {dataHandle(cInfo2, rData[cInfo2.dataIndex])}
                             </td>)}
-                    </tr>)}
+                    </tr>)
+                }
             </tbody>
         </table>
         <div className="board__pagination"></div>

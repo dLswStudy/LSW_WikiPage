@@ -1,0 +1,86 @@
+#WikiArea{
+    .btnArea{
+        @apply
+        flex justify-between;
+
+        &-left{
+
+        }
+        &-right{
+            @apply
+            flex;
+        }
+    }
+    .wiki-body__wrapper{
+        @apply
+        px-20 py-5
+        ;
+
+        .itemText{
+            @apply text-4xl;
+        }
+
+        .title{
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        input, textarea{
+            @apply
+            px-3 py-3;
+
+            height: 100%;
+            flex-grow: 1;
+            border-radius: 8px;
+            border: #1f2530 solid 1px;
+        }
+        textarea{
+            min-height: 300px;
+        }
+        .btnArea{
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .wiki{
+            &__header{
+                .title_content{
+                    font-weight: bold;
+                }
+            }
+            &__content-body{
+                min-height: 500px;
+                .content{
+                    @apply px-4 py-2;
+                }
+            }
+            &__movePost {
+                @apply flex align-middle;
+                .text{
+                    position: relative;
+                    margin-right: 14px;
+                }
+                .text::after{
+                    content: "";
+                    width: 2px;
+                    height: 12px;
+                    background-color: #1f2530;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    right: -7px;
+                    opacity: .7;
+                }
+            }
+            &__movePost:hover {
+                @apply
+                bg-gray-50
+                ;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+}
