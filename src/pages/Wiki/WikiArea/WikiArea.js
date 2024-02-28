@@ -135,12 +135,19 @@ const WikiArea = ({queryClient}) => {
                                 }
                             </div>
                             <hr className="hr2"/>
-                            <div className="wiki__movePost"><span
-                                className="text text-noto-h1">이전글</span><span>{post?.prev?.title}</span></div>
-                            <hr className="hr2"/>
-                            <div className="wiki__movePost"><span
-                                className="text text-noto-h1">다음글</span><span>{post?.next?.title}</span></div>
-                            <hr className="hr2"/>
+                            {
+                                post?.prev?.title &&
+                                    <><div className="wiki__movePost"><span
+                                        className="text text-noto-h1">이전글</span><span>{post?.prev?.title}</span></div>
+                                        <hr className="hr2"/></>
+                            }
+                            {
+                                post?.next?.title &&
+                                    <><div className="wiki__movePost"><span
+                                        className="text text-noto-h1">다음글</span><span>{post?.next?.title}</span></div>
+                                        <hr className="hr2"/></>
+                            }
+
                         </div>
                     </SpinByW>
                 </div>
