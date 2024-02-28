@@ -128,8 +128,9 @@ const MainArea = () => {
                     <div className="BoardSection__btnArea mb-5 flex justify-end">
                         <div className="addBtn btn btn--black-reverse" onClick={doAddBtn}>추가</div>
                     </div>
-                    <SpinByW loading={loadingR}/>
-                    <Board columns={cols} rowDatas={rowDatas} />
+                    <SpinByW loading={loadingR} top_px={100}>
+                        <Board columns={cols} rowDatas={rowDatas} />
+                    </SpinByW>
 
                     <div className={`BoardSection__popup ${isPopupVisible ? '' : 'hidden'}`}>
                         <div className="popup__header">

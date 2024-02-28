@@ -48,10 +48,6 @@ code {
     border-black;
 }
 
-.SpinByW-loading + div{
-    display: none;
-}
-
 .pageName {
     font-family: Apple, sans-serif;
     font-weight: bolder;

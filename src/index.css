@@ -92,9 +92,6 @@ code {
             --tw-text-opacity: 1;
             color: rgb(41 37 36 / var(--tw-text-opacity));
 }
-.SpinByW-loading + div{
-    display: none;
-}
 .pageName {
     font-family: Apple, sans-serif;
     font-weight: bolder;
@@ -688,6 +685,18 @@ video {
             --tw-backdrop-saturate:  ;
             --tw-backdrop-sepia:  ;
 }
+.absolute{
+            position: absolute;
+}
+.relative{
+            position: relative;
+}
+.top-2{
+            top: 0.5rem;
+}
+.top-5{
+            top: 1.25rem;
+}
 .my-14{
             margin-top: 3.5rem;
             margin-bottom: 3.5rem;
@@ -706,6 +715,12 @@ video {
 }
 .h-24{
             height: 6rem;
+}
+.\!h-5{
+            height: 1.25rem !important;
+}
+.transform{
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .justify-end{
             justify-content: flex-end;
