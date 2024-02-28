@@ -7,8 +7,6 @@
 
         }
         &-right{
-            @apply
-            flex;
         }
     }
     .wiki-body__wrapper{
@@ -37,21 +35,25 @@
         textarea{
             min-height: 300px;
         }
-        .btnArea{
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
         .wiki{
             &__header{
+                .titleDiv{
+                    @apply flex;
+                }
                 .title_content{
                     font-weight: bold;
+                    @apply flex-grow;
                 }
             }
             &__content-body{
-                min-height: 500px;
+                min-height: 300px;
+                @apply py-5;
+
+                .contentDiv{
+                    @apply flex;
+                }
                 .content{
-                    @apply px-4 py-2;
+                    @apply px-4 py-2 flex-grow;
                 }
             }
             &__movePost {

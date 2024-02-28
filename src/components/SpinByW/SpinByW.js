@@ -1,7 +1,7 @@
 import {Spin} from "antd";
 import styled from 'styled-components';
 
-const SpinByW = ({loading, top_px=0, children}) => {
+const SpinByW = ({loading, top_px=0, errMsg, children}) => {
 
     const StyledDiv = styled.div`
       .SpinByW {
@@ -9,7 +9,7 @@ const SpinByW = ({loading, top_px=0, children}) => {
         min-height: ${top_px * 2}px;
       }
 
-      .SpinByW-loading {
+      .SpinByW-loading, .errMsgBox {
         position: absolute;
         left: 50%;
         top: ${top_px}px;
@@ -26,7 +26,8 @@ const SpinByW = ({loading, top_px=0, children}) => {
         <StyledDiv>
             <div className={`SpinByW`}>
                 <div className={loading ? 'SpinByW-loading' : ''}><Spin spinning={loading}></Spin></div>
-                {children}
+                {!errMsg && children}
+                <div className="errMsgBox">{errMsg}</div>
             </div>
         </StyledDiv>
     );

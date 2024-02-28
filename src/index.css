@@ -194,8 +194,7 @@ code {
 
         }
 #WikiArea .btnArea-right{
-            display: flex;
-}
+        }
 #WikiArea .wiki-body__wrapper{
             padding-left: 5rem;
             padding-right: 5rem;
@@ -225,18 +224,23 @@ code {
 #WikiArea .wiki-body__wrapper textarea{
             min-height: 300px;
         }
-#WikiArea .wiki-body__wrapper .btnArea{
+#WikiArea .wiki-body__wrapper .wiki__header .titleDiv{
             display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
+}
 #WikiArea .wiki-body__wrapper .wiki__header .title_content{
                     font-weight: bold;
+                    flex-grow: 1;
                 }
 #WikiArea .wiki-body__wrapper .wiki__content-body{
-                min-height: 500px;
+                min-height: 300px;
+                padding-top: 1.25rem;
+                padding-bottom: 1.25rem;
             }
+#WikiArea .wiki-body__wrapper .wiki__content-body .contentDiv{
+            display: flex;
+}
 #WikiArea .wiki-body__wrapper .wiki__content-body .content{
+            flex-grow: 1;
             padding-left: 1rem;
             padding-right: 1rem;
             padding-top: 0.5rem;
@@ -691,18 +695,18 @@ video {
 .relative{
             position: relative;
 }
-.top-2{
-            top: 0.5rem;
-}
-.top-5{
-            top: 1.25rem;
-}
 .my-14{
             margin-top: 3.5rem;
             margin-bottom: 3.5rem;
 }
+.mb-0{
+            margin-bottom: 0px;
+}
 .mb-5{
             margin-bottom: 1.25rem;
+}
+.mt-5{
+            margin-top: 1.25rem;
 }
 .flex{
             display: flex;
@@ -715,9 +719,6 @@ video {
 }
 .h-24{
             height: 6rem;
-}
-.\!h-5{
-            height: 1.25rem !important;
 }
 .transform{
             transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
