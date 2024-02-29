@@ -1,35 +1,44 @@
 import {Spin} from "antd";
-import styled from 'styled-components';
+import {useEffect, useRef, useState} from "react";
 
-const SpinByW = ({loading, top_px=0, errMsg, children}) => {
+const SpinByW = ({loading, top_px = 0, errMsg, children}) => {
+    const chdr = useRef(null)
+    const isVisibleChdr = !(loading || errMsg)
+    const [height, setHeight] = useState(top_px);
 
-    const StyledDiv = styled.div`
-      .SpinByW {
-        position: relative;
-        min-height: ${top_px * 2}px;
-      }
-
-      .SpinByW-loading, .errMsgBox {
-        position: absolute;
-        left: 50%;
-        top: ${top_px}px;
-        transform: translate(-50%, -50%);
-        /* 로딩 중 스타일 */
-      }
-
-      .SpinByW-loading + div {
-        visibility: hidden;
-      }
-    `;
+    useEffect(() => {
+        console.log("chdr.current.offsetHeight = ", chdr.current.offsetHeight);
+        if(chdr.current.offsetHeight !== 0)
+            setHeight(chdr.current.offsetHeight / 2)
+    }, [chdr.current]);
 
     return (
-        <StyledDiv>
-            <div className={`SpinByW`}>
-                <div className={loading ? 'SpinByW-loading' : ''}><Spin spinning={loading}></Spin></div>
-                {!errMsg && children}
-                <div className="errMsgBox">{errMsg}</div>
+        <div className="SpinByW" style={{position: 'relative', minHeight: `${top_px * 2}px`}}>
+            {
+                loading &&
+                <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: `${height}px`,
+                    transform: 'translate(-50%, -50%)',
+                }}>
+                    <Spin spinning={loading}></Spin>
+                </div>
+            }
+            <div ref={chdr} className={isVisibleChdr ? 'visible' : 'invisible'}>
+                {children}
             </div>
-        </StyledDiv>
+            {errMsg &&
+                <div className="errMsgBox" style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: `${top_px}px`,
+                    transform: 'translate(-50%, -50%)',
+                }}>
+                    {errMsg}
+                </div>
+            }
+        </div>
     );
 };
 
