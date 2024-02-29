@@ -9,7 +9,7 @@
         &-right{
         }
     }
-    .wiki-body__wrapper{
+    .wiki__wrapper{
         @apply
         px-20 py-5
         ;
@@ -37,6 +37,10 @@
         }
         .wiki{
             &__header{
+                @apply flex justify-between;
+                &-left, &-right, .dateDiv{
+                    @apply flex;
+                }
                 .titleDiv{
                     @apply flex;
                 }

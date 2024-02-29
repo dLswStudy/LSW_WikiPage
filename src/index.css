@@ -195,22 +195,22 @@ code {
         }
 #WikiArea .btnArea-right{
         }
-#WikiArea .wiki-body__wrapper{
+#WikiArea .wiki__wrapper{
             padding-left: 5rem;
             padding-right: 5rem;
             padding-top: 1.25rem;
             padding-bottom: 1.25rem;
 }
-#WikiArea .wiki-body__wrapper .itemText{
+#WikiArea .wiki__wrapper .itemText{
             font-size: 2.25rem;
             line-height: 2.5rem;
 }
-#WikiArea .wiki-body__wrapper .title{
+#WikiArea .wiki__wrapper .title{
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
-#WikiArea .wiki-body__wrapper input, #WikiArea .wiki-body__wrapper textarea{
+#WikiArea .wiki__wrapper input, #WikiArea .wiki__wrapper textarea{
             padding-left: 0.75rem;
             padding-right: 0.75rem;
             padding-top: 0.75rem;
@@ -221,40 +221,47 @@ code {
             border-radius: 8px;
             border: #1f2530 solid 1px;
 }
-#WikiArea .wiki-body__wrapper textarea{
+#WikiArea .wiki__wrapper textarea{
             min-height: 300px;
         }
-#WikiArea .wiki-body__wrapper .wiki__header .titleDiv{
+#WikiArea .wiki__wrapper .wiki__header{
+            display: flex;
+            justify-content: space-between;
+}
+#WikiArea .wiki__wrapper .wiki__header-left, #WikiArea .wiki__wrapper .wiki__header-right, #WikiArea .wiki__wrapper .wiki__header .dateDiv{
             display: flex;
 }
-#WikiArea .wiki-body__wrapper .wiki__header .title_content{
+#WikiArea .wiki__wrapper .wiki__header .titleDiv{
+            display: flex;
+}
+#WikiArea .wiki__wrapper .wiki__header .title_content{
                     font-weight: bold;
                     flex-grow: 1;
                 }
-#WikiArea .wiki-body__wrapper .wiki__content-body{
+#WikiArea .wiki__wrapper .wiki__content-body{
                 min-height: 300px;
                 padding-top: 1.25rem;
                 padding-bottom: 1.25rem;
             }
-#WikiArea .wiki-body__wrapper .wiki__content-body .contentDiv{
+#WikiArea .wiki__wrapper .wiki__content-body .contentDiv{
             display: flex;
 }
-#WikiArea .wiki-body__wrapper .wiki__content-body .content{
+#WikiArea .wiki__wrapper .wiki__content-body .content{
             flex-grow: 1;
             padding-left: 1rem;
             padding-right: 1rem;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
 }
-#WikiArea .wiki-body__wrapper .wiki__movePost{
+#WikiArea .wiki__wrapper .wiki__movePost{
             display: flex;
             vertical-align: middle;
 }
-#WikiArea .wiki-body__wrapper .wiki__movePost .text{
+#WikiArea .wiki__wrapper .wiki__movePost .text{
                     position: relative;
                     margin-right: 14px;
                 }
-#WikiArea .wiki-body__wrapper .wiki__movePost .text::after{
+#WikiArea .wiki__wrapper .wiki__movePost .text::after{
                     content: "";
                     width: 2px;
                     height: 12px;
@@ -266,7 +273,7 @@ code {
                     right: -7px;
                     opacity: .7;
                 }
-#WikiArea .wiki-body__wrapper .wiki__movePost:hover{
+#WikiArea .wiki__wrapper .wiki__movePost:hover{
             --tw-bg-opacity: 1;
             background-color: rgb(249 250 251 / var(--tw-bg-opacity));
                 cursor: pointer;
@@ -689,6 +696,12 @@ video {
             --tw-backdrop-saturate:  ;
             --tw-backdrop-sepia:  ;
 }
+.visible{
+            visibility: visible;
+}
+.invisible{
+            visibility: hidden;
+}
 .absolute{
             position: absolute;
 }
@@ -705,8 +718,8 @@ video {
 .mb-5{
             margin-bottom: 1.25rem;
 }
-.mt-5{
-            margin-top: 1.25rem;
+.mr-3{
+            margin-right: 0.75rem;
 }
 .flex{
             display: flex;
