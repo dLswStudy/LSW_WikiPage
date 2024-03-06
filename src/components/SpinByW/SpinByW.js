@@ -1,38 +1,47 @@
 import {Spin} from "antd";
-import {useEffect, useRef, useState} from "react";
+import {useRef} from "react";
+import {timelog} from "src/assets/js/util";
 
-const SpinByW = ({loading, top_px = 0, errMsg, children}) => {
-    const chdr = useRef(null)
-    const isVisibleChdr = !(loading || errMsg)
-    const [height, setHeight] = useState(top_px);
+const SpinByW = ({loading, top_px = 0, errMsg=null, children}) => {
+    timelog('Spin--')
+    const chdr = useRef(null) //children
+    const isRenderChdr = !loading && !errMsg
+    const chdrW = useRef(0)
+    const chdrH = useRef(top_px * 2)
 
-    useEffect(() => {
-        console.log("chdr.current.offsetHeight = ", chdr.current.offsetHeight);
-        if(chdr.current.offsetHeight !== 0)
-            setHeight(chdr.current.offsetHeight / 2)
-    }, [chdr.current]);
+    /*
+    children 이 렌더링이 되어 있었을 때의 width와 height 를
+    이 컴포넌트의 width와 height 로 설정하기 */
+    if(chdr?.current){
+        const w = chdr.current.offsetWidth
+        const h = chdr.current.offsetHeight
+        if(w > 0) chdrW.current = w
+        if(h > top_px * 2) chdrH.current = h
+    }
+    const thisCompW = `${chdrW.current}px`
+    const thisCompH = `${chdrH.current}px`
 
     return (
-        <div className="SpinByW" style={{position: 'relative', minHeight: `${top_px * 2}px`}}>
+        <div className="SpinByW" style={{position: 'relative', minHeight: thisCompH, minWidth: thisCompW}}>
             {
                 loading &&
                 <div style={{
                     position: 'absolute',
                     left: '50%',
-                    top: `${height}px`,
+                    top: '50%',
                     transform: 'translate(-50%, -50%)',
                 }}>
                     <Spin spinning={loading}></Spin>
                 </div>
             }
-            <div ref={chdr} className={isVisibleChdr ? 'visible' : 'invisible'}>
-                {children}
+            <div ref={chdr}>
+                {isRenderChdr && children}
             </div>
             {errMsg &&
                 <div className="errMsgBox" style={{
                     position: 'absolute',
                     left: '50%',
-                    top: `${top_px}px`,
+                    top: '50%',
                     transform: 'translate(-50%, -50%)',
                 }}>
                     {errMsg}
