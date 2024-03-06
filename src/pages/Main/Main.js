@@ -5,9 +5,7 @@ import MainArea from "./MainArea/MainArea";
 const Main = () => {
     return (
         <div id="Main">
-            <Header/>
             <MainArea/>
-            <Footer/>
         </div>
     );
 };

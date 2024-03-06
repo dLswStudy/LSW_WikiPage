@@ -1,7 +1,13 @@
 import moment from "moment";
 import {useNavigate} from "react-router-dom";
 
-const Board = ({columns, rowDatas, isVisibleHeader = true}) => {
+const columns = [
+    {title: '제목', dataIndex: 'title'},
+    {title: '등록일시', dataIndex: 'instDT', type: 'dateTime', maxWidth: 170},
+    {title: '수정일시', dataIndex: 'modfDT', type: 'dateTime', maxWidth: 170},
+]
+
+const Board = ({rowDatas, isVisibleHeader = true, errMsg}) => {
     const navigate = useNavigate();
     const styleHandle = colInfo => {
         const styleData = {}
@@ -24,8 +30,6 @@ const Board = ({columns, rowDatas, isVisibleHeader = true}) => {
 
     return <div id="Board">
         {
-            rowDatas.length > 0
-            &&
             <table>
                 <thead className={`board__header ${isVisibleHeader ? 'flex' : 'hidden'} text-gray-900 border-double`}>
                 <tr>
@@ -35,16 +39,26 @@ const Board = ({columns, rowDatas, isVisibleHeader = true}) => {
                         </th>)}
                 </tr>
                 </thead>
-                <tbody className="board__body">
-                {rowDatas.map((rData, rowNum) =>
-                    <tr key={rowNum} onClick={() => toDetail(rData.index)}>
-                        {columns.map(cInfo2 =>
-                            <td style={styleHandle(cInfo2)} key={rowNum + '-' + cInfo2.dataIndex}>
-                                {dataHandle(cInfo2, rData[cInfo2.dataIndex])}
-                            </td>)}
-                    </tr>)
+                {
+                    <tbody className="board__body">
+                    {
+                        errMsg
+                        &&
+                        <tr>
+                            <td colSpan={columns.length} className="text-center">{errMsg}</td>
+                        </tr>
+                    }
+                    {rowDatas?.length > 0 &&
+                        rowDatas.map((rData, rowNum) =>
+                        <tr key={rowNum} onClick={() => toDetail(rData.index)}>
+                            {columns.map(cInfo2 =>
+                                <td style={styleHandle(cInfo2)} key={rowNum + '-' + cInfo2.dataIndex}>
+                                    {dataHandle(cInfo2, rData[cInfo2.dataIndex])}
+                                </td>)}
+                        </tr>)
+                    }
+                    </tbody>
                 }
-                </tbody>
             </table>
         }
 

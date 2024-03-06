@@ -158,7 +158,6 @@ code {
                     margin-bottom: 15px;
                 }
 .BoardSection__popup .popup__body__wrapper .content{
-                    display: flex;
                 }
 .BoardSection__popup .popup__body__wrapper input, .BoardSection__popup .popup__body__wrapper textarea{
             padding: 0.75rem;
@@ -244,15 +243,9 @@ code {
                 padding-bottom: 1.25rem;
             }
 #WikiArea .wiki__wrapper .wiki__content-body .contentDiv{
-            display: flex;
-}
+                }
 #WikiArea .wiki__wrapper .wiki__content-body .content{
-            flex-grow: 1;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-}
+                }
 #WikiArea .wiki__wrapper .wiki__movePost{
             display: flex;
             vertical-align: middle;
@@ -721,6 +714,9 @@ video {
 .mr-3{
             margin-right: 0.75rem;
 }
+.block{
+            display: block;
+}
 .flex{
             display: flex;
 }
@@ -739,12 +735,21 @@ video {
 .justify-end{
             justify-content: flex-end;
 }
+.justify-center{
+            justify-content: center;
+}
+.border{
+            border-width: 1px;
+}
 .border-double{
             border-style: double;
 }
 .bg-slate-200{
             --tw-bg-opacity: 1;
             background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+.text-center{
+            text-align: center;
 }
 .text-gray-900{
             --tw-text-opacity: 1;
