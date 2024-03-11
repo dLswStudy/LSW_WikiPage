@@ -27,7 +27,7 @@ export function Main_BoardAddPopup() {
     const failMsg = '게시글 등록 실패';
 
     // 포스트 등록 ReactQuery
-    const {mutate, isLoading: isLoading_save = false} = useMutation(({data}) => api_addPost(data), {
+    const {mutate, isLoading: isLoading_save = false} = useMutation((data) => api_addPost(data), {
         onSuccess: () => {
             doClose()
             // 업데이트 성공 후 포스트 다시 가져오기
@@ -70,6 +70,7 @@ export function Main_BoardAddPopup() {
     }
 
     const handleEditorChange = (newEditorState) => {
+        console.log("추가할 에디터state = ", newEditorState);
         contentState.current = newEditorState;
     };
 

@@ -12,15 +12,15 @@ const MyBlock = styled.div`
 `;
 function Wiki_editor(props) {
     const setEditorReference = (ref) => {
-        props.editorRef.current = ref
+        if(props.editorRef)
+            props.editorRef.current = ref
     }
 
     return <MyBlock>
         <Editor
             wrapperClassName="demo-wrapper"
             editorClassName="editor"
-            initialContentState={props.contentState}
-            onContentStateChange={props.onChange}
+            {...props}
             editorRef={setEditorReference}
         />
     </MyBlock>

@@ -1,5 +1,3 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import WikiArea from "./WikiArea/WikiArea";
 import {useLocation} from "react-router-dom";
 
@@ -10,7 +8,7 @@ const Wiki = () => {
 
     return (
         <div id="Wiki">
-            <WikiArea postId={postId}/>
+            <WikiArea key={postId} postId={postId}/>
         </div>
     );
 };

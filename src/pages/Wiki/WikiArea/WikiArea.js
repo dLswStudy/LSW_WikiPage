@@ -1,11 +1,11 @@
-import {useEffect, useRef, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import appConfig from "../../../config/app.config";
 import SpinByW from "src/components/SpinByW/SpinByW";
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import moment from "moment";
 import {formatDate} from "src/assets/js/util";
+import Wiki_editor from "src/pages/Wiki/WikiArea/Wiki_editor";
 
 // API 경로 설정
 const apiURL = appConfig.apiPreUrl + '/Post';
@@ -26,36 +26,40 @@ const WikiArea = ({postId}) => {
     console.log('%c WikiArea Rendering', "color:red")
     const navigate = useNavigate();
     const queryClient = useQueryClient()
+
+    const isOK_getPost = useRef(true);
     const titleInput = useRef();
-    const contentInput = useRef();
+    const editorRef = useRef(null);
+    const contentState = useRef();
 
     const [isEditing, setIsEditing] = useState(false);
-    const [editData, setEditData] = useState({ title: '', content: '' });
     const msg = {
         fetchFail: '데이터를 가져오는데 실패하였습니다.',
         updtOK: '저장되었습니다.',
         updtFail: '저장 실패하였습니다.'
     }
 
-    // postId가 변경될 때마다 isEditing을 false로 초기화
-    useEffect(() => {
-        setIsEditing(false);
-    }, [postId]); // postId를 의존성 배열에 추가
-
     // 포스트 가져오기
-    const { data: post, isLoading, error } = useQuery(['post', postId], () => api_getPost(postId));
+    const { data: post, isLoading, error } = useQuery(['post', postId], () => api_getPost(postId),{enabled:isOK_getPost.current});
+    if(isLoading) console.log("isLoading = ", isLoading);
     console.log("post = ", post);
+    if(post) {
+        isOK_getPost.current = false
+        contentState.current = post.content
+    }
     let errMsg = ''
     if (error) {
         errMsg = msg.fetchFail;
     }
 
     // 포스트 업데이트
-    const { mutate, isLoading:isLoading_save=false } = useMutation(({ data }) => api_updatePost(postId, data), {
+    const { mutate, isLoading:isLoading_save=false } = useMutation(( data ) => api_updatePost(postId, data), {
         onSuccess: () => {
+            isOK_getPost.current = true
             // 업데이트 성공 후 포스트 다시 가져오기
             queryClient.invalidateQueries(['post', postId]).then(r => {
                 setIsEditing(false);
+                console.log("post.title = ", post.title);
                 alert(msg.updtOK)
             });
         },
@@ -64,25 +68,24 @@ const WikiArea = ({postId}) => {
         }
     });
 
-    useEffect(() => {
-        console.log("isLoading_save = ", isLoading_save);
-    }, [isLoading_save]); // postId를 의존성 배열에 추가
+
 
     const handleEdit = () => {
         setIsEditing(true);
-        setEditData({ title: post.title, content: post.content });
     };
-    const handleEditChange = (e) => {
-        setEditData({
-            ...editData,
-            [e.target.name]: e.target.value,
-        })
-    }
+    const handleEditorChange = (newEditorState) => {
+        contentState.current = newEditorState;
+    };
     const goToMain = () => {
         navigate('/')
     }
     const doSaveBtn = () => {
-        mutate({data: editData})
+        const data = {
+            title: titleInput.current.value,
+            content: contentState.current
+        }
+        console.log("save data = ", data);
+        mutate(data)
     }
     const doCancleBtn = () => {
         setIsEditing(false)
@@ -125,11 +128,11 @@ const WikiArea = ({postId}) => {
                                         <div className="titleDiv">
                                             <div className="itemText">제목:&nbsp;</div>
                                             <input
+                                                type="text"
                                                 className="title_content"
                                                 ref={titleInput}
                                                 name="title"
-                                                value={editData.title}
-                                                onChange={handleEditChange}
+                                                defaultValue={post?.title}
                                             />
                                         </div>
                                     }
@@ -141,19 +144,23 @@ const WikiArea = ({postId}) => {
                             </div>
                             <hr className="hr4 mb-0"/>
                             <div className="wiki__content-body">
-                                {!isEditing ?
-                                    <div className="content">{post?.content}</div>
+                                {
+                                    !isLoading &&
+                                    (!isEditing ?
+                                    <div className="contentDiv p-4">
+                                        <Wiki_editor key={post?.modfDT}
+                                             toolbarHidden readOnly
+                                             defaultContentState={contentState.current} />
+                                    </div>
                                     :
                                     <div className="contentDiv">
-                                        <div className="itemText">본문:&nbsp;</div>
-                                        <textarea
-                                            className="content"
-                                            ref={contentInput}
-                                            name="content"
-                                            value={editData.content}
-                                            onChange={handleEditChange}
-                                        />
-                                    </div>
+                                        <div className="itemText mb-3">본문:&nbsp;</div>
+                                        <div className="editor-wrapper p-4">
+                                            <Wiki_editor editorRef={editorRef}
+                                                         defaultContentState={contentState.current}
+                                                         onContentStateChange={handleEditorChange}/>
+                                        </div>
+                                    </div>)
                                 }
                             </div>
                             <hr className="hr2"/>

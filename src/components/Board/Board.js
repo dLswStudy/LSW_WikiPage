@@ -1,14 +1,6 @@
 import moment from "moment";
-import {useNavigate} from "react-router-dom";
 
-const columns = [
-    {title: '제목', dataIndex: 'title'},
-    {title: '등록일시', dataIndex: 'instDT', type: 'dateTime', maxWidth: 170},
-    {title: '수정일시', dataIndex: 'modfDT', type: 'dateTime', maxWidth: 170},
-]
-
-const Board = ({rowDatas, isVisibleHeader = true, errMsg}) => {
-    const navigate = useNavigate();
+const Board = ({rowDatas, columns, isVisibleHeader = true, errMsg, toDetailFunc}) => {
     const styleHandle = colInfo => {
         const styleData = {}
         if (colInfo.maxWidth) {
@@ -22,10 +14,6 @@ const Board = ({rowDatas, isVisibleHeader = true, errMsg}) => {
         } else {
             return data
         }
-    }
-
-    const toDetail = (index) => {
-        navigate('/wiki', {state: {index: index}})
     }
 
     return <div id="Board">
@@ -50,7 +38,7 @@ const Board = ({rowDatas, isVisibleHeader = true, errMsg}) => {
                     }
                     {rowDatas?.length > 0 &&
                         rowDatas.map((rData, rowNum) =>
-                        <tr key={rowNum} onClick={() => toDetail(rData.index)}>
+                        <tr key={rowNum} onClick={() => toDetailFunc(rData)}>
                             {columns.map(cInfo2 =>
                                 <td style={styleHandle(cInfo2)} key={rowNum + '-' + cInfo2.dataIndex}>
                                     {dataHandle(cInfo2, rData[cInfo2.dataIndex])}
